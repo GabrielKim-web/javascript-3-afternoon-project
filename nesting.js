@@ -51,7 +51,38 @@ var employees = [
 */
 
 //Code Here
+// function employeeUpdater() {
+//   let updateEmployee = updateEmployee.map(function (element) {
+//     if (element["firstName"] === "Theo") {
+//       return null;
+//     }
+//     else if (element["firstName"] === "Lorie") {
+//       element["department"] = "HR";
+//     }
+//     else {
+//       return element;
+//     }
+//   })
+//   return updateEmployee;
+// }
+function employeeUpdater() {
+  let updateEmployee = employees.map(function (element, index) {
+    if (element["firstName"] === "Theo") {
+      employees.splice(index, 1);
+      index--;
+    }
+    else if (element["firstName"] === "Lorie") {
+      element["department"] = "HR";
+      return element;
+    }
+    else {
+      return element;
+    }
+  })
+  return updateEmployee;
+}
 
+console.log(employeeUpdater());
 
 
 ////////// PROBLEM 2 //////////
@@ -69,6 +100,19 @@ var workplaceAccidents = [12, 56, 44, 3, 29, 56, 56, 3, 7, 12];
 */
 
 //Code Here
+function removeDuplicates() {
+  for (var i=0; i < workplaceAccidents.length; i++) {
+    let notSame = workplaceAccidents[i];
+    for (var j = i+1; j < workplaceAccidents.length; j++) {
+      if (workplaceAccidents[j] === notSame) {
+        workplaceAccidents.splice(j, 1);
+        j--; // since workplaceAccidents was now shifted, checks new value that shifted into this position
+      }
+    }
+  }
+  return workplaceAccidents;
+}  
+console.log(removeDuplicates());
 
 
 
@@ -97,9 +141,11 @@ var cat = {
 */
 
 //Code Here
-var grumpyActivity;
-var fluffy2ndFriend;
+var grumpyActivity = cat["catFriends"][0]["activities"][1];
+var fluffy2ndFriend = cat["catFriends"][1]["name"];
 
+console.log(grumpyActivity);
+console.log(fluffy2ndFriend);
 
 
 ////////// PROBLEM 4 //////////
@@ -130,8 +176,8 @@ var myCar = {
 // Do not edit the code above.
 
 /*
-  Above is some information about my car. As you can see, I am not the best driver.
   I have caused a few accidents.
+  Above is some information about my car. As you can see, I am not the best driver.
   Please update this driving record so that I can feel better about my driving skills.
     1. Write a function called recordCleaner.
     2. Loop over the accidents array.
@@ -139,8 +185,16 @@ var myCar = {
 */
 
 //Code Here
+function recordCleaner () {
+  myCar["accidents"].forEach(function(element){
+    if (element["atFaultForAccident"] === true) {
+      element["atFaultForAccident"] = false;
+    }
+  })
+  return myCar;
+}
 
-
+console.log(recordCleaner());
 
 ////////// PROBLEM 5 //////////
 
@@ -159,4 +213,53 @@ var numsArr = [ [1, 2, 3, 4], [5, 6], [7, 8, 9, 10, 11]];
 
 //Code Here
 
+// function looper(arr) {
+//   for(let i = 0; i < arr.length; i++) {
+//     for (let j = 0; j < arr[i].length; j++){
+//       if (arr[i][j] % 2 === 0) {
+//         arr[i][j] = "even";
+//       }
+//       else {
+//         arr[i][j] = "odd"
+//       }
+//     }
+//   }
+//   return arr;
+// }
 
+// looper(numsArr);
+
+function looper() {
+  var numsArr = [ [1, 2, 3, 4], [5, 6], [7, 8, 9, 10, 11]];
+  numsArr.forEach(function(element){
+    element.forEach(function(oddEven, i){
+      if(oddEven % 2 === 0) {
+        element[i] = "even";
+      }
+      else {
+        element[i] = "odd";
+      }
+    })
+  return element;
+  })
+  console.log(numsArr);
+  return numsArr;
+}
+looper();
+
+// function looper(arr) {
+//   arr.forEach(function(element, i){
+//     element.forEach(function(oddEven, j){
+//       if(oddEven % 2 === 0) {
+//         element[j] = "even";
+//       }
+//       else {
+//         element[j] = "odd";
+//       }
+//     })
+//   // return element;
+//   })
+//   console.log(arr);
+//   return arr;
+// }
+// looper(numsArr);

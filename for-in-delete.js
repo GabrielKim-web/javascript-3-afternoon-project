@@ -40,7 +40,12 @@
 */
 
 function showValues( obj ) {
+  let emptyStr = "";
+  for (var prop in obj) {
+    emptyStr = emptyStr.concat(obj[prop]); // continuously updates emptyStr as more props are being read
+  }
   //Code Here
+  return emptyStr;
 }
 
 
@@ -54,7 +59,14 @@ function showValues( obj ) {
 */
 
 //Code Here
-
+function greaterThan10 (obj) {
+  for (var prop in obj) {
+    if (obj[prop] > 10) {
+      obj[prop] = 0;
+    }
+  }
+  return obj;
+}
 
 
 ////////// PROBLEM 3 //////////
@@ -67,7 +79,20 @@ function showValues( obj ) {
 
 //Code Here
 
+var number = {
+  valueOne: 5,
+  second: 10,
+  third: 15
+};
+function double(obj) {
+  for (var prop in obj) {
+    console.log("access" + prop);
+    obj[prop] = obj[prop] * 2;
+  }
+  return obj;
+}
 
+console.log(double(number));
 
 ////////// PROBLEM 4 //////////
 
@@ -81,7 +106,35 @@ function showValues( obj ) {
 
 //Code Here
 
+// let test = {
+//   shrek: "oof",
+//   name: "69",
+//   shloop: "OOF",
+//   nope: "javsScript"
+// };
+// function secrets(obj) {
+//   let reply = "";
+//   for (var prop in obj) {
+//     // console.log("did it get here?");
+//     if (prop.startsWith("sh", 0)) {
+//       reply += obj[prop];
+//     }
+//   }
+//   return reply;
+// }
 
+// secrets(test);
+
+function secrets(obj) {
+  let reply = "";
+  for (var prop in obj) {
+    // console.log("did it get here?");
+    if (prop.startsWith("sh", 0)) {
+      reply += obj[prop];
+    }
+  }
+  return reply;
+}
 
 /* 
   Sometimes it's needed to delete object properties. 
@@ -89,17 +142,17 @@ function showValues( obj ) {
   Uncomment the example below to see a for in loop deleting all the properties inside an object.
 */
 
-// var deleteAllThethings = {
-//   one: 1,
-//   two: 2,
-//   three: 3
-// }
+var deleteAllThethings = {
+  one: 1,
+  two: 2,
+  three: 3
+}
 
-// for(var key in deleteAllThethings) {
-//   delete deleteAllThethings[key]
-// }
+for(var key in deleteAllThethings) {
+  delete deleteAllThethings[key]
+}
 
-// console.log(deleteAllThethings)
+console.log(deleteAllThethings) // returns an empty object
 
 
 
@@ -112,7 +165,10 @@ function showValues( obj ) {
 
 //Code Here
 
-
+function removePassword(obj) {
+  delete obj.password;
+  return obj;
+}
 
 ////////// PROBLEM 6 //////////
 
@@ -131,7 +187,13 @@ var deleteTheBigNumbers = {
 
 //Code Here
 
+for (var prop in deleteTheBigNumbers) {
+  if (deleteTheBigNumbers[prop] > 100) {
+    delete deleteTheBigNumbers[prop];
+  }
+}
 
+console.log(deleteTheBigNumbers);
 
 ////////// PROBLEM 7 //////////
 
@@ -144,7 +206,14 @@ var deleteTheBigNumbers = {
 
 //Code Here
 
-
+function startsWithK (obj) {
+  for (var prop in obj) {
+    if (prop.startsWith("k", 0)) {
+      delete obj[prop];
+    }
+  }
+  return obj;
+}
 
 ////////// PROBLEM 8 //////////
 
@@ -159,4 +228,20 @@ var deleteTheBigNumbers = {
 
 //Code Here
 
+let test = {
+  first: "treasure here",
+  second: "not here",
+  third: "not here either",
+  fourth: "treasure also here"
+};
 
+function hiddenTreasure(obj) {
+  for (var prop in obj) {
+    if (!obj[prop].includes("treasure")) {
+      delete obj[prop];
+    }
+  }
+  return obj;
+}
+
+hiddenTreasure(test);
