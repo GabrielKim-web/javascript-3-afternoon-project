@@ -237,7 +237,7 @@ let test = {
 
 function hiddenTreasure(obj) {
   for (var prop in obj) {
-    if (!obj[prop].includes("treasure")) {
+    if (!obj[prop].includes("treasure")) { //we are searching for the property VALUE, not the property itself!
       delete obj[prop];
     }
   }

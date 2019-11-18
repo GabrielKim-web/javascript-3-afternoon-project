@@ -65,22 +65,39 @@ var employees = [
 //   })
 //   return updateEmployee;
 // }
+// function employeeUpdater() {
+//   let updateEmployee = employees.map(function (element, index) {
+//     if (element["firstName"] === "Theo") {
+//       employees.splice(index, 1);
+//       index--;
+//     }
+//     else if (element["firstName"] === "Lorie") {
+//       element["department"] = "HR";
+//       return element;
+//     }
+//     else {
+//       return element;
+//     }
+//   })
+//   return updateEmployee;
+// }
 function employeeUpdater() {
-  let updateEmployee = employees.map(function (element, index) {
-    if (element["firstName"] === "Theo") {
-      employees.splice(index, 1);
-      index--;
+  for (let i = 0; i < employees.length; i++) {
+    if (employees[i]["firstName"] === "Theo") {
+      console.log("found " + employees[i]["firstName"] + "; proceeding to delete from database");
+      employees.splice(i, 1);
+      i--;
     }
-    else if (element["firstName"] === "Lorie") {
-      element["department"] = "HR";
-      return element;
+    if (employees[i]["firstName"] === "Lorie") {
+      console.log("found " + employees[i]["firstName"] + "; changing department to HR");
+      employees[i]["department"] = "HR";
     }
-    else {
-      return element;
-    }
-  })
-  return updateEmployee;
+  }
+  return employees;
 }
+
+employeeUpdater();
+console.log(employees);
 
 console.log(employeeUpdater());
 
